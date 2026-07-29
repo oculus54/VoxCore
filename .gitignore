@@ -1,0 +1,51 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment variables
+.env
+
+# Data directories (large files)
+data/audio/*
+data/embeddings/*
+data/index/*
+!data/audio/.gitkeep
+!data/embeddings/.gitkeep
+!data/index/.gitkeep
+
+# Model weights
+models/*
+!models/.gitkeep
+
+# Outputs
+outputs/summaries/*
+outputs/logs/*
+!outputs/summaries/.gitkeep
+!outputs/logs/.gitkeep
+
+# Transcripts (auto-generated)
+data/transcripts/*
+!data/transcripts/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
