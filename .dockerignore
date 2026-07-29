@@ -1,0 +1,39 @@
+# Git
+.git/
+.gitignore
+
+# Secrets – never bake into the image
+.env
+
+# Large data / model files
+data/audio/*
+data/embeddings/*
+data/index/*
+data/transcripts/*
+models/*
+
+# Outputs
+outputs/
+
+# Notebooks
+Notebooks/
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Tests (not needed in production image)
+tests/
