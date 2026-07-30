@@ -1,12 +1,24 @@
-# 🎙️ Audio-RAG-Summarizer
+# 🎙️VoxCore: Audio-RAG-Summarizer
 
 > **End-to-end pipeline that transcribes audio, builds a RAG index, and generates intelligent summaries using Llama.**
 
+## 🛠️ Tech Stack
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge\&logo=python\&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge\&logo=fastapi\&logoColor=white)
+![LlamaIndex](https://img.shields.io/badge/LlamaIndex-6E57E0?style=for-the-badge)
+![FAISS](https://img.shields.io/badge/FAISS-0467DF?style=for-the-badge)
+![Faster Whisper](https://img.shields.io/badge/Faster--Whisper-FF6F00?style=for-the-badge)
+![Hugging Face](https://img.shields.io/badge/Hugging%20Face-FFD21E?style=for-the-badge\&logo=huggingface\&logoColor=black)
+![BGE Embeddings](https://img.shields.io/badge/BGE%20Embeddings-4CAF50?style=for-the-badge)
+![Llama](https://img.shields.io/badge/Llama-7B42BC?style=for-the-badge\&logo=meta\&logoColor=white)
+![FFmpeg](https://img.shields.io/badge/FFmpeg-007808?style=for-the-badge\&logo=ffmpeg\&logoColor=white)
+
 ---
 
-## Architecture
+## 🏗️ Architecture
 
-```
+```text
 Audio File
    │
    ▼
@@ -42,95 +54,3 @@ Summarizer            (src/summarizer.py)
    ▼
 Output                (outputs/summaries/)
 ```
-
----
-
-## Quick Start
-
-### 1. Clone & install
-
-```bash
-git clone <repo-url>
-cd Audio-RAG-Summarizer
-python -m venv .venv && .venv\Scripts\activate   # Windows
-pip install -r requirements.txt
-```
-
-### 2. Configure
-
-```bash
-cp .env .env.local   # then fill in your keys
-```
-
-| Variable | Description |
-|---|---|
-| `LLAMA_API_KEY` | API key for Llama / Groq / OpenAI-compatible endpoint |
-| `LLAMA_API_BASE` | Base URL of the API |
-| `HF_TOKEN` | HuggingFace token (optional, for gated models) |
-
-### 3. Run
-
-```bash
-# Full pipeline: transcribe → index → summarize
-python main.py --audio data/audio/lecture.mp3
-
-# Skip transcription (use existing transcript)
-python main.py --transcript data/transcripts/lecture.txt
-
-# Custom query
-python main.py --audio data/audio/meeting.mp3 --query "What were the key decisions?"
-```
-
----
-
-## Project Structure
-
-```
-Audio-RAG-Summarizer/
-├── main.py                  # CLI entry point
-├── requirements.txt
-├── .env                     # API keys (never commit)
-├── data/
-│   ├── audio/               # Input audio files
-│   ├── transcripts/         # Whisper output (.txt / .json)
-│   ├── embeddings/          # Cached embeddings
-│   └── index/               # Persisted FAISS index
-├── models/                  # Optional local model weights
-├── src/
-│   ├── config.py            # Central configuration
-│   ├── audio.py             # Audio loading & preprocessing
-│   ├── transcriber.py       # Faster-Whisper wrapper
-│   ├── loader.py            # Transcript loader
-│   ├── chunker.py           # SentenceSplitter
-│   ├── embedder.py          # BGE embedding model
-│   ├── vector_store.py      # FAISS VectorStoreIndex
-│   ├── retriever.py         # Dense retriever
-│   ├── prompt.py            # Prompt templates
-│   ├── llm.py               # Llama API client
-│   ├── summarizer.py        # Orchestration
-│   ├── utils.py             # Helpers & logging
-│   └── evaluation.py        # ROUGE / BERTScore metrics
-├── outputs/
-│   ├── summaries/           # Generated summaries (.md / .txt)
-│   └── logs/                # Pipeline run logs
-└── tests/
-    ├── test_chunker.py
-    ├── test_retriever.py
-    └── test_llm.py
-```
-
----
-
-## Evaluation
-
-```bash
-python -m src.evaluation --summary outputs/summaries/out.txt --reference ref.txt
-```
-
-Outputs ROUGE-1/2/L and BERTScore F1.
-
----
-
-## License
-
-MIT
