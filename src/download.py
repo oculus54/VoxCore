@@ -50,7 +50,7 @@ def convert_to_wav(input_file, output_dir="downloads"):
 
     return output_file
 
-youtube_url = "https://youtu.be/keeqnciDVOo?si=Ca9bwY9pOcBW48fq"
+youtube_url = input("Enter a valid Youtube URL")
 
 audio_file, metadata = download_audio(youtube_url)
 
